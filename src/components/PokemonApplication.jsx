@@ -13,20 +13,28 @@ function PokemonApplication () {
     }, []);
 
     return (
-        <>
-        <h1>Hello</h1>
-            <select onChange={(e) => (setChosenPokemon(e.target.value), console.log(e.target.value))}>
-                <option value="">Välj en pokemon</option>
-            {allPokemon.map((p, i) => (
-                <option key={i} value={p.url}>{p.name}</option>
-
-            ))}
-            </select>
-
-            <p>{chosenPokemon ? `chosen pokemon url, ${chosenPokemon} ` : ""}</p>
-            <button onClick={() => (setViewDetails(!viewDetails))}>{!viewDetails ? "View Details" : "Hide Details"}</button>
-
+        <>  
+            <div className="pokeListContainer">
+                <select className="pokeList" onChange={(e) => (setChosenPokemon(e.target.value), console.log(e.target.value))}>
+                    <option value="">Välj en pokemon</option>
+                    {allPokemon.map((p, i) => (
+                        <option key={i} value={p.url}>{p.name}</option>
+                    ))}
+                </select>
+                <button className="viewBtn" onClick={() => (setViewDetails(!viewDetails))}>{!viewDetails ? "View Details" : "Hide Details"}</button>
+            </div>
             {viewDetails && <Pokemon pokemonUrl={chosenPokemon} />}
+            {/* <div>
+                <select onChange={(e) => (setChosenPokemon(e.target.value), console.log(e.target.value))}>
+                    <option value="">Välj en pokemon</option>
+                {allPokemon.map((p, i) => (
+                    <option key={i} value={p.url}>{p.name}</option>
+                ))}
+                </select>
+                <p>{chosenPokemon ? `chosen pokemon url, ${chosenPokemon} ` : ""}</p>
+                <button onClick={() => (setViewDetails(!viewDetails))}>{!viewDetails ? "View Details" : "Hide Details"}</button>
+                {viewDetails && <Pokemon pokemonUrl={chosenPokemon} />}
+            </div> */}
         </>
     )
 }

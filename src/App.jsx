@@ -11,12 +11,13 @@ function App() {
 
   }
   return (
-    <>
-      <button onClick={displayButton}>{showPokedex ? "Shutdown Pokedex": "Boot up Pokedex"}</button>
-      <div>
+    <div className="appContainer">
+      <div className="dexContainer">
         {showPokedex && <PokemonApplication />}
       </div>
-    </>
+      <button className='bootPokedex' onClick={displayButton}>{showPokedex ? "Shutdown Pokedex": "Boot up Pokedex"}</button>
+
+    </div>
   )
 }
 
