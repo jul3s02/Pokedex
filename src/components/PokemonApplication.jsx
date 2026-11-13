@@ -16,7 +16,7 @@ function PokemonApplication () {
     return (
         <>  
             <div className="pokeListContainer">
-                <select className="pokeList" value={chosenPokemon} onChange={(e) => (setChosenPokemon(e.target.value), console.log(e.target.value))}>
+                <select className="pokeList" value={chosenPokemon} onChange={(e) => (setChosenPokemon(e.target.value))}>
                     <option value="">Pick a Pokemon</option>
                     {allPokemon.map((p, i) => (
                         <option key={i} value={p.url}>{p.name}</option>

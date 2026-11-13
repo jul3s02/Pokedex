@@ -23,14 +23,12 @@ function Pokemon ({pokemonUrl}) {
     }, [pokemonUrl]);
 
     if (loading) {
-        console.log("laddar")
         return (
         <p>... laddar</p>
     )}
     if (error) return <p>Ett fel uppstod {error}</p>
     return (
         <>
-        {console.log(pokemon.types)}
         <div className="pokeView">
             <div className="pokeImg">
                 <img src={pokemon.sprites.front_default} alt={"Bild på " + pokemon.name} />    
@@ -50,7 +48,6 @@ function Pokemon ({pokemonUrl}) {
                     <p className="pokeHeight">Ht: {pokemon.height * 10}cm </p>
                 </section>
             </section>
-            {console.log(pokemon.species.url)}
             <Flavor flavorUrl={pokemon.species.url} />
         </div>
         </>

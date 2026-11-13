@@ -31,7 +31,7 @@ function TypeBadge( {typeUrl, typeName}) {
     if (!typeIcon) return <p>{typeName}</p>
     return (
         <>
-        <img src={typeIcon} alt="" />    
+        <img src={typeIcon} alt={typeName} />    
         </>
     )
 }
