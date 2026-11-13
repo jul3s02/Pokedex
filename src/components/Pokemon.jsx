@@ -1,28 +1,11 @@
 import { useEffect, useState } from "react";
-
+import TypeBadge from "./TypeBadge";
+import Flavor from "./Flavor";
 
 function Pokemon ({pokemonUrl}) {
     const [pokemon, setPokemon] = useState({})
-// hello
-// function UserList() {
-//     const [users, setUsers] = useState([]);
-     const [loading, setLoading] = useState(true);
-     const [error, setError] = useState(null);
-    
-//     useEffect(() => {
-//         async function hamta() {
-//             try {
-//                 const res = await fetch(API_URL);
-//                 if (!res.ok) throw new Error(`Status ${res.status}`);
-//                 setUsers(await res.json());
-//             } catch (err) {
-//                 setError(err.message);
-//             } finally {
-//                 setLoading(false);
-//             }
-//         }
-//     hamta();
-// }, []);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         async function getPokemon() {
@@ -37,17 +20,7 @@ function Pokemon ({pokemonUrl}) {
             }
         }
         getPokemon()
-    }, []);
-
-
-
-// helloK
-    // useEffect(() => {
-    //     fetch(pokemonUrl)
-    //         .then(res => res.json())
-    //         .then(data => setPokemon(data)); // data.results is your array of 151 items
-    // }, [pokemonUrl]);
-
+    }, [pokemonUrl]);
 
     if (loading) {
         console.log("laddar")
@@ -59,12 +32,26 @@ function Pokemon ({pokemonUrl}) {
         <>
         {console.log(pokemon.types)}
         <div className="pokeView">
-            <img className="pokeImg" src={pokemon.sprites.front_default} alt={"Bild på " + pokemon.name} />
-            <p className="pokeId">#{String(pokemon.id).padStart(3, "0")}</p>
-            <p className="pokeName">name: {pokemon.name}</p>
-            <p className="pokeTypes">Types: {pokemon.types.map((e, i)=>(<strong>{e.type.name} </strong>))}</p>
-            <p className="pokeWeight">Weight:{pokemon.weight / 10}kg</p>
-            <p className="pokeHeight">Height: {pokemon.height * 10}cm </p>
+            <div className="pokeImg">
+                <img src={pokemon.sprites.front_default} alt={"Bild på " + pokemon.name} />    
+            </div>
+            <section className="pokeStats">
+                <section className="pokeIdName">
+                    <p className="pokeId">#{String(pokemon.id).padStart(3, "0")}</p>
+                    <p className="pokeName">{pokemon.name}</p>
+                </section>
+                <section className="pokeTypes">
+                    {pokemon.types.map((e, i)=>(
+                        <TypeBadge key={i} typeUrl={e.type.url} typeName={e.type.name} />
+                    ))}
+                </section>
+                <section className="pokeSize">
+                    <p className="pokeWeight">Wt:{pokemon.weight / 10}kg</p>
+                    <p className="pokeHeight">Ht: {pokemon.height * 10}cm </p>
+                </section>
+            </section>
+            {console.log(pokemon.species.url)}
+            <Flavor flavorUrl={pokemon.species.url} />
         </div>
         </>
     )
